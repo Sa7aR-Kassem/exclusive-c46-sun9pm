@@ -69,11 +69,13 @@ const Navbar = ({ className }: NavbarProps) => {
 
 
   useEffect(() => {
-    getUserCart().then((res) => {
-      console.log("Navbar", res);
-      updateNumOfCartItems(res.numOfCartItems)
-    })
-  }, [])
+    if (status === "authenticated") {
+      getUserCart().then((res) => {
+        console.log("Navbar", res);
+        updateNumOfCartItems(res.numOfCartItems)
+      })
+    }
+  }, [status])
 
 
   return (
